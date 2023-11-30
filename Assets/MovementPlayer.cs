@@ -20,7 +20,8 @@ public class MovementPlayer : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 movement = new Vector3(horizontal, 0, vertical);
+        Vector3 movement = new Vector3(horizontal, 0, vertical).normalized;
         rb.velocity = movement * moveSpeed;
+        GetComponent<CharacterController>().Move(movement * moveSpeed * Time.deltaTime);
     }
 }
